@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import SearchResult, { SearchResultProps } from '@/components/search-result';
+import styled, { keyframes } from 'styled-components';
 
 
-const inputHighlight = {
-    "0%": {
-        boxShadow: "0 0 0 0 rgba(37, 99, 235, 0.8)",
-    },
-    "70%": {
-        boxShadow: "0 0 0 15px rgba(37, 99, 235, 0)",
-    },
-    "100%": {
-        boxShadow: "0 0 0 0 rgba(37, 99, 235, 0)",
-    },
-};
+const inputHighlight = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.8);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+`;
 
+const AnimatedInput = styled.input`
+  animation: ${inputHighlight} 2s infinite;
+  animation-delay: 0.5s;
+  &:focus {
+    outline: none;
+    border-color: blue;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+  }
+`;
 
 
 export default function Home() {
@@ -25,28 +35,6 @@ export default function Home() {
         searchQuery: '',
         country: '',
     });
-
-    const [showAnimation, setShowAnimation] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowAnimation(false);
-        }, 10000);
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
-    
-    const inputAnimationStyle = showAnimation
-        ? {
-            animation: `inputHighlight 2s infinite`,
-            animationName: inputHighlight,
-        }
-        : {};
-
-
-
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (query: string) => {
@@ -80,24 +68,16 @@ export default function Home() {
         <div>
             <div className="mt-10 flex justify-center gap-x-6">
                 <form onSubmit={handleFormSubmit} className="flex items-center md:w-full sm:w-full lg:w-2/3" data-gtm-form-interact-id="0">
-                    <label htmlFor="voice-search" className="sr-only">Search</label>
                     <div className="relative w-full">
-                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
-                            </svg>
-                        </div>
-                        <input
+                        <AnimatedInput
                             id="voice-search"
                             type="text"
-                            style={inputAnimationStyle}
                             className="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                             placeholder="Enter a topic, brand, or product..."
                             required
                             value={searchTerm}
                             onChange={(event) => setSearchTerm(event.target.value)}
                         />
-
                     </div>
                     <select
                         id="countries"
