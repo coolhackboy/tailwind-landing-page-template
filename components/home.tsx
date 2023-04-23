@@ -1,7 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
 import SearchResult, { SearchResultProps } from '@/components/search-result';
+
+
+const inputHighlight = {
+    "0%": {
+        boxShadow: "0 0 0 0 rgba(0, 255, 255, 0.8)",
+    },
+    "70%": {
+        boxShadow: "0 0 0 40px rgba(0, 255, 255, 0)",
+    },
+    "100%": {
+        boxShadow: "0 0 0 0 rgba(0, 255, 255, 0)",
+    },
+};
+
 
 
 export default function Home() {
@@ -13,26 +26,60 @@ export default function Home() {
         country: '',
     });
 
-    const handleSubmit = async (event: any) => {
-        event.preventDefault();
+    const [showAnimation, setShowAnimation] = useState(true);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowAnimation(false);
+        }, 10000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
+
+    const inputAnimationStyle = showAnimation
+        ? {
+            animation: `inputHighlight 2s infinite`,
+            animationName: inputHighlight,
+        }
+        : {};
+
+
+
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (query: string) => {
+        setLoading(true);
         try {
             const response = await axios.get('/api/search', {
                 params: {
-                    q: searchTerm,
+                    q: query,
                     country: country,
                 },
             });
-            setSearchResult({ data: response.data, searchQuery: searchTerm, country: country });
+            setSearchResult({ data: response.data, searchQuery: query, country: country });
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
+    };
+
+    const handleExampleClick = (example: string) => {
+        setSearchTerm(example);
+        handleSubmit(example);
+    };
+
+    const handleFormSubmit = (event: any) => {
+        event.preventDefault();
+        handleSubmit(searchTerm);
     };
 
     return (
         <div>
             <div className="mt-10 flex justify-center gap-x-6">
-                <form onSubmit={handleSubmit} className="flex items-center md:w-full sm:w-full lg:w-2/3" data-gtm-form-interact-id="0">
+                <form onSubmit={handleFormSubmit} className="flex items-center md:w-full sm:w-full lg:w-2/3" data-gtm-form-interact-id="0">
                     <label htmlFor="voice-search" className="sr-only">Search</label>
                     <div className="relative w-full">
                         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -43,12 +90,14 @@ export default function Home() {
                         <input
                             id="voice-search"
                             type="text"
+                            style={inputAnimationStyle}
                             className="bg-white-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                             placeholder="Enter a topic, brand, or product..."
                             required
                             value={searchTerm}
                             onChange={(event) => setSearchTerm(event.target.value)}
                         />
+
                     </div>
                     <select
                         id="countries"
@@ -123,13 +172,44 @@ export default function Home() {
                         <span className="sr-only">Search</span>
                     </button>
                 </form>
+
+                {loading && (
+                    <div className="fixed inset-0 flex items-center justify-center z-50">
+                        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+                    </div>
+                )}
             </div>
 
+            <div className="mt-5 flex justify-center gap-x-6">
+                <ul>
+                    <li className="ml-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm text-gray-500">eg.</li>
+                    <li
+                        className=" cursor-pointer m-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm bg-blue-50 text-blue-600" onClick={() => handleExampleClick('chatgpt')}>
+                        chatgpt
+                    </li>
+                    <li
+                        className=" cursor-pointer m-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm bg-blue-50 text-blue-600" onClick={() => handleExampleClick('stable diffusion')}>
+                        stable diffusion
+                    </li>
+                    <li
+                        className=" cursor-pointer m-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm bg-blue-50 text-blue-600" onClick={() => handleExampleClick('midjourney')}>
+                        midjourney
+                    </li>
+                    <li
+                        className=" cursor-pointer m-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm bg-blue-50 text-blue-600" onClick={() => handleExampleClick('tesla')}>
+                        tesla
+                    </li>
+                    <li
+                        className=" cursor-pointer m-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm bg-blue-50 text-blue-600" onClick={() => handleExampleClick('richard branson')}>
+                        richard branson
+                    </li>
+                </ul>
+            </div>
 
             {/* Render SearchResult component below the form */}
             {searchResult.data && (
                 <div className="mt-10">
-                    <SearchResult data={searchResult.data} searchQuery={searchResult.searchQuery} />
+                    <SearchResult data={searchResult.data} searchQuery={searchResult.searchQuery} country={searchResult.country} />
                 </div>
             )}
         </div>
