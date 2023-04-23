@@ -5,13 +5,13 @@ import SearchResult, { SearchResultProps } from '@/components/search-result';
 
 const inputHighlight = {
     "0%": {
-        boxShadow: "0 0 0 0 rgba(0, 255, 255, 0.8)",
+        boxShadow: "0 0 0 0 rgba(37, 99, 235, 0.8)",
     },
     "70%": {
-        boxShadow: "0 0 0 40px rgba(0, 255, 255, 0)",
+        boxShadow: "0 0 0 15px rgba(37, 99, 235, 0)",
     },
     "100%": {
-        boxShadow: "0 0 0 0 rgba(0, 255, 255, 0)",
+        boxShadow: "0 0 0 0 rgba(37, 99, 235, 0)",
     },
 };
 
@@ -37,7 +37,7 @@ export default function Home() {
             clearTimeout(timer);
         };
     }, []);
-
+    
     const inputAnimationStyle = showAnimation
         ? {
             animation: `inputHighlight 2s infinite`,

@@ -3,11 +3,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import Image from 'next/image'
-import FeaturesBg from '@/public/images/features-bg.png'
+import FeaturesBg1 from '@/public/images/keyword_research.png'
+import FeaturesBg2 from '@/public/images/website_content.png'
+import FeaturesBg3 from '@/public/images/complete_analisys.png'
+import FeaturesBg4 from '@/public/images/automated.png'
 import FeaturesElement from '@/public/images/features-element.png'
 
 export default function Features() {
-  
+
   const [tab, setTab] = useState<number>(1)
 
   const tabs = useRef<HTMLDivElement>(null)
@@ -18,7 +21,7 @@ export default function Features() {
 
   useEffect(() => {
     heightFix()
-  }, []) 
+  }, [])
 
   return (
     <section className="relative">
@@ -32,8 +35,7 @@ export default function Features() {
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <h1 className="h2 mb-4">Explore the solutions</h1>
-            <p className="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</p>
+            <h1 className="h2 mb-4">AI-powered SEO solution</h1>
           </div>
 
           {/* Section content */}
@@ -43,7 +45,6 @@ export default function Features() {
             <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6 md:mt-6" data-aos="fade-right">
               <div className="md:pr-4 lg:pr-12 xl:pr-16 mb-8">
                 <h3 className="h3 mb-3">Powerful suite of tools</h3>
-                <p className="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
               </div>
               {/* Tabs buttons */}
               <div className="mb-8 md:mb-0">
@@ -53,8 +54,8 @@ export default function Features() {
                   onClick={(e) => { e.preventDefault(); setTab(1); }}
                 >
                   <div>
-                    <div className="font-bold leading-snug tracking-tight mb-1">Building the Simple ecosystem</div>
-                    <div className="text-gray-600">Take collaboration to the next level with security and administrative features built for teams.</div>
+                    <div className="font-bold leading-snug tracking-tight mb-1">Keyword Research & Optimization</div>
+                    <div className="text-gray-600">Automatically discover high-traffic, low-competition keywords and receive real-time optimization suggestions to boost your rankings.</div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
                     <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -68,8 +69,8 @@ export default function Features() {
                   onClick={(e) => { e.preventDefault(); setTab(2); }}
                 >
                   <div>
-                    <div className="font-bold leading-snug tracking-tight mb-1">Building the Simple ecosystem</div>
-                    <div className="text-gray-600">Take collaboration to the next level with security and administrative features built for teams.</div>
+                    <div className="font-bold leading-snug tracking-tight mb-1">Website Content Analysis & Optimization</div>
+                    <div className="text-gray-600">Enhance user experience and search rankings with data-driven content structure, keyword distribution, and link quality recommendations.</div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
                     <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -83,8 +84,23 @@ export default function Features() {
                   onClick={(e) => { e.preventDefault(); setTab(3); }}
                 >
                   <div>
-                    <div className="font-bold leading-snug tracking-tight mb-1">Building the Simple ecosystem</div>
-                    <div className="text-gray-600">Take collaboration to the next level with security and administrative features built for teams.</div>
+                    <div className="font-bold leading-snug tracking-tight mb-1">Competitor Analysis & Monitoring</div>
+                    <div className="text-gray-600">Stay ahead of the competition by tracking their strategies, strengths, and weaknesses in keywords, backlinks, and traffic.</div>
+                  </div>
+                  <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
+                    <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.334 8.06a.5.5 0 00-.421-.237 6.023 6.023 0 01-5.905-6c0-.41.042-.82.125-1.221a.5.5 0 00-.614-.586 6 6 0 106.832 8.529.5.5 0 00-.017-.485z" fill="#191919" fillRule="nonzero" />
+                    </svg>
+                  </div>
+                </a>
+                <a
+                  className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 ${tab !== 4 ? 'bg-white shadow-md border-gray-200 hover:shadow-lg' : 'bg-gray-200 border-transparent'}`}
+                  href="#0"
+                  onClick={(e) => { e.preventDefault(); setTab(4); }}
+                >
+                  <div>
+                    <div className="font-bold leading-snug tracking-tight mb-1">Automated Reporting & Data Visualization</div>
+                    <div className="text-gray-600"> Make informed decisions with easy-to-understand, customizable reports and charts, delivered regularly to keep you up-to-date on your SEO performance.</div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
                     <svg className="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
@@ -111,8 +127,7 @@ export default function Features() {
                   leaveTo="opacity-0 -translate-y-16"
                 >
                   <div className="relative inline-flex flex-col">
-                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg} width={500} height="462" alt="Features bg" />
-                    <Image className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} />
+                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg1} width={500} height="462" alt="Features bg" />
                   </div>
                 </Transition>
                 {/* Item 2 */}
@@ -128,8 +143,7 @@ export default function Features() {
                   leaveTo="opacity-0 -translate-y-16"
                 >
                   <div className="relative inline-flex flex-col">
-                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg} width={500} height="462" alt="Features bg" />
-                    <Image className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} />
+                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg2} width={500} height="462" alt="Features bg" />
                   </div>
                 </Transition>
                 {/* Item 3 */}
@@ -145,8 +159,23 @@ export default function Features() {
                   leaveTo="opacity-0 -translate-y-16"
                 >
                   <div className="relative inline-flex flex-col">
-                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg} width={500} height="462" alt="Features bg" />
-                    <Image className="md:max-w-none absolute w-full left-0 transform animate-float" src={FeaturesElement} width={500} height="44" alt="Element" style={{ top: '30%' }} />
+                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg3} width={500} height="462" alt="Features bg" />
+                  </div>
+                </Transition>
+                {/* Item 4 */}
+                <Transition
+                  show={tab === 4}
+                  appear={true}
+                  className="w-full"
+                  enter="transition ease-in-out duration-700 transform order-first"
+                  enterFrom="opacity-0 translate-y-16"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in-out duration-300 transform absolute"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 -translate-y-16"
+                >
+                  <div className="relative inline-flex flex-col">
+                    <Image className="md:max-w-none mx-auto rounded" src={FeaturesBg4} width={500} height="462" alt="Features bg" />
                   </div>
                 </Transition>
               </div>
