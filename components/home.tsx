@@ -37,6 +37,8 @@ export default function Home() {
     });
     const [loading, setLoading] = useState(false);
 
+    console.log(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID)
+
     const handleSubmit = async (query: string) => {
         setLoading(true);
         try {
