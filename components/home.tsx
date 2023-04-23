@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import SearchResult, { SearchResultProps } from '@/components/search-result';
 import styled, { keyframes } from 'styled-components';
+import { event } from "nextjs-google-analytics";
 
 
 const inputHighlight = keyframes`
@@ -61,9 +62,13 @@ export default function Home() {
         handleSubmit(example);
     };
 
-    const handleFormSubmit = (event: any) => {
-        event.preventDefault();
+    const handleFormSubmit = (e: any) => {
+        e.preventDefault();
         handleSubmit(searchTerm);
+        event("submit_form", {
+            category: "Contact",
+            label: searchTerm,
+        });
     };
 
     return (
