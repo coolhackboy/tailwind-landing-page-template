@@ -40,8 +40,12 @@ export default function Hero() {
         {/* Hero content */}
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
 
+
           {/* Section header */}
           <div className="text-center pb-12 md:pb-16">
+          <div className="my-4 inline-block"> {/* 添加一个div，包含居中样式 */}
+              <a href="https://www.producthunt.com/posts/ai-seo-copilot-by-askseo?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ai&#0045;seo&#0045;copilot&#0045;by&#0045;askseo" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=390879&theme=light" alt="AI&#0032;SEO&#0032;Copilot&#0032;by&#0032;Askseo - Get&#0032;instant&#0044;&#0032;raw&#0044;&#0032;unparalleled&#0032;search&#0032;keyword | Product Hunt" className="width: 250px; height: 54px;" width="250" height="54" /></a>
+            </div>
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">Your AI SEO Copilot  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Discover what people are asking about </span> </h1>
             <div className="max-w-3xl mx-auto">
               <p className="text-xl text-gray-600 mb-8" data-aos="zoom-y-out" data-aos-delay="150">Get instant, raw, unparalleled search insight with AskSeoOnlie.</p>
