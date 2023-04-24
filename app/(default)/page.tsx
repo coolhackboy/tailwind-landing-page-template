@@ -1,6 +1,8 @@
+import {GoogleAnalytics} from "nextjs-google-analytics";
+
 export const metadata = {
-  title: 'AskSeo - AI-based website SEO research tool',
-  description: 'AskSeoOnline is an AI-driven SEO solution that provides a powerful toolkit, including keyword research tools, competitor analysis and monitoring tools, automated reporting, and data visualization capabilities.',
+    title: 'AskSeo - AI-based website SEO research tool',
+    description: 'AskSeoOnline is an AI-driven SEO solution that provides a powerful toolkit, including keyword research tools, competitor analysis and monitoring tools, automated reporting, and data visualization capabilities.',
 }
 
 import Hero from '@/components/hero'
@@ -10,13 +12,14 @@ import Testimonials from '@/components/testimonials'
 import Newsletter from '@/components/newsletter'
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Features />
-      <FeaturesBlocks />
-      <Testimonials />
-      <Newsletter />
-    </>
-  )
+    return (
+        <>
+            <GoogleAnalytics trackPageViews/>
+            <Hero/>
+            <Features/>
+            <FeaturesBlocks/>
+            <Testimonials/>
+            <Newsletter/>
+        </>
+    )
 }
