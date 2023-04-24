@@ -6,9 +6,7 @@ import HeroImage from '@/public/images/hero-image.png'
 import Modal from '@/components/utils/modal'
 
 import Home from '@/components/home'
-
-
-
+import {GoogleAnalytics} from "nextjs-google-analytics";
 
 
 export default function Hero() {
@@ -16,7 +14,9 @@ export default function Hero() {
   const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false)
 
   return (
+
     <section className="relative">
+        <GoogleAnalytics trackPageViews />
 
       {/* Illustration behind hero content */}
       <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 pointer-events-none -z-1" aria-hidden="true">

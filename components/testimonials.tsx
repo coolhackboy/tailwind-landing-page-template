@@ -1,14 +1,16 @@
+'use client'
 import Image from 'next/image'
 import TestimonialImage1 from '@/public/images/avatar-1.png'
 import TestimonialImage2 from '@/public/images/avatar-2.png'
 import TestimonialImage3 from '@/public/images/avatar-3.png'
 import TestimonialImage4 from '@/public/images/avatar-4.png'
+import {GoogleAnalytics} from "nextjs-google-analytics";
 
 
 export default function Testimonials() {
   return (
     <section className="relative">
-
+      <GoogleAnalytics trackPageViews />
       {/* Illustration behind content */}
       <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 pointer-events-none -mb-32" aria-hidden="true">
         <svg width="1760" height="518" viewBox="0 0 1760 518" xmlns="http://www.w3.org/2000/svg">

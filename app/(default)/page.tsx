@@ -1,6 +1,3 @@
-'use client'
-import {GoogleAnalytics} from "nextjs-google-analytics";
-
 export const metadata = {
     title: 'AskSeo - AI-based website SEO research tool',
     description: 'AskSeoOnline is an AI-driven SEO solution that provides a powerful toolkit, including keyword research tools, competitor analysis and monitoring tools, automated reporting, and data visualization capabilities.',
@@ -15,7 +12,6 @@ import Newsletter from '@/components/newsletter'
 export default function Home() {
     return (
         <>
-            <GoogleAnalytics trackPageViews/>
             <Hero/>
             <Features/>
             <FeaturesBlocks/>
