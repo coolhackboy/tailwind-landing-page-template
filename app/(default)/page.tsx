@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Home - Simple',
-  description: 'Page description',
+  title: 'AskSeo - AI-based website SEO research tool',
+  description: 'AskSeoOnline is an AI-driven SEO solution that provides a powerful toolkit, including keyword research tools, competitor analysis and monitoring tools, automated reporting, and data visualization capabilities.',
 }
 
 import Hero from '@/components/hero'
